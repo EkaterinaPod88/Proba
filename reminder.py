@@ -6,7 +6,11 @@ import time
 import pygame
 
 
-def set(): #создаем функцию для вызова напоминания
+t = 0
+
+
+def set(): #создаем функцию для установки времени напоминания
+    global  t
     rem = sd.askstring("Время напоминания", "Введите время напоминания в формате чч:мм (в 24 часовом формате")
     if rem:
         try:
@@ -20,6 +24,17 @@ def set(): #создаем функцию для вызова напоминан
             print(t)
         except Exception as e:
             mb.showerror("Ошибка!", f"Произошла ошибка {e}")
+
+
+def check(): #
+    global t
+    if t:
+        now = time.time()
+        if now >= t:
+            play_snd()
+            t = 0
+    window.after(10000, check)# рекурсия когда функция вызывает себя
+
 
 
 

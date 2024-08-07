@@ -23,6 +23,7 @@ def set(): #создаем функцию для установки времен
             print(dt)
             t = dt.timestamp()
             print(t)
+            lable.config(text=f"Надпоминание на {hour:02}: {minute:02}")
         except Exception as e:
             mb.showerror("Ошибка!", f"Произошла ошибка {e}")
 
@@ -36,7 +37,7 @@ def check(): # функция проверки
             t = 0
     window.after(10000, check)# рекурсия когда функция вызывает себя
 
-def play_snd(): #
+def play_snd(): # функция для игры музыки
     global music
     music  = True
     pygame.mixer.init()
@@ -44,23 +45,23 @@ def play_snd(): #
     pygame.mixer.music.play()
 
 
-def stop_music(): #
-    global music:
+def stop_music(): # фукция для отключения музыки
+    global music
     if music:
         pygame.mixer.stop()
         music = False
-    lable.config(text="Установите новое надпоминание")
+    lable.config(text="Установите новое напоминание")
 
 
 window = Tk()
 window.title("Напоминание")
 lable = Label(text ="Установите напоминание", font=("Arial", 14))
-lable.pack(pady=10)
+lable.pack(pady=20)
 set_button = Button(text="Установить напоминание", command=set)
 set_button.pack()
 
 
-stop_button = Button(text="Остановить музыку", command=stop_music)
+stop_button = Button(text="Остановить музыку", command=stop_music)# кнопка остановки музыки
 stop_button.pack()
 
 check()

@@ -23,7 +23,8 @@ def set(): #создаем функцию для установки времен
             print(dt)
             t = dt.timestamp()
             print(t)
-            lable.config(text=f"Надпоминание на {hour:02}: {minute:02}")
+            text = sd.askstring("Текст напоминания", "Введите текст напоминания")
+            lable.config(text=f"Надпоминание на {hour:02}: {minute:02} с текстом {text}")
         except Exception as e:
             mb.showerror("Ошибка!", f"Произошла ошибка {e}")
 
@@ -39,7 +40,7 @@ def check(): # функция проверки
 
 def play_snd(): # функция для игры музыки
     global music
-    music  = True
+    music = True
     pygame.mixer.init()
     pygame.mixer.music.load("reminder.mp3")
     pygame.mixer.music.play()

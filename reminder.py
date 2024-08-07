@@ -26,7 +26,7 @@ def set(): #создаем функцию для установки времен
             mb.showerror("Ошибка!", f"Произошла ошибка {e}")
 
 
-def check(): #
+def check(): # функция проверки
     global t
     if t:
         now = time.time()
@@ -34,6 +34,11 @@ def check(): #
             play_snd()
             t = 0
     window.after(10000, check)# рекурсия когда функция вызывает себя
+
+def play_snd():
+    pygame.mixer.init()
+    pygame.mixer.music.load("reminder.mp3")
+    pygame.mixer.music.play()
 
 
 
